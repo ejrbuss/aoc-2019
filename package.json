@@ -1,0 +1,23 @@
+{
+  "name": "aoc-2019",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ejrbuss/aoc-2019.git"
+  },
+  "author": "Eric Buss (root@ejrbuss.net)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ejrbuss/aoc-2019/issues"
+  },
+  "homepage": "https://github.com/ejrbuss/aoc-2019#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.9",
+    "typescript": "^4.5.2"
+  }
+}
