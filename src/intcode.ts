@@ -36,8 +36,6 @@ function load(memory: number[], value: number, mode: Mode): number {
 	throw new Error(`Unknown load mode: ${mode}!`);
 }
 
-let staticId = 0;
-
 export async function runIntCode(
 	code: IntCode,
 	input: ChannelLike<number>,
@@ -47,7 +45,6 @@ export async function runIntCode(
 	const outputChannel = Channel.from(output);
 	const memory = [...code];
 	let pc = 0;
-	let id = staticId++;
 	for (;;) {
 		const instruction = memory[pc];
 		const a = memory[pc + 1];

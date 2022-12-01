@@ -46,3 +46,18 @@ export function permute(array) {
         ]);
     });
 }
+export function chunk(array, n) {
+    const chunks = [];
+    let chunk = [];
+    array.forEach((a, i) => {
+        if (chunk.length > 0 && i % n === 0) {
+            chunks.push(chunk);
+            chunk = [];
+        }
+        chunk.push(a);
+    });
+    if (chunk.length > 0) {
+        chunks.push(chunk);
+    }
+    return chunks;
+}

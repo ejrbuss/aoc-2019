@@ -31,13 +31,11 @@ function load(memory, value, mode) {
     }
     throw new Error(`Unknown load mode: ${mode}!`);
 }
-let staticId = 0;
 export async function runIntCode(code, input, output) {
     const inputChannel = Channel.from(input);
     const outputChannel = Channel.from(output);
     const memory = [...code];
     let pc = 0;
-    let id = staticId++;
     for (;;) {
         const instruction = memory[pc];
         const a = memory[pc + 1];
@@ -54,13 +52,10 @@ export async function runIntCode(code, input, output) {
                 pc += 4;
                 break;
             case OpCode.In:
-                // console.log(`${id} waiting...`);
                 memory[a] = await inputChannel.receive();
-                // console.log(`${id} recieved: ${memory[a]}`);
                 pc += 2;
                 break;
             case OpCode.Out:
-                // console.log(`${id} sending: ${load(memory, a, aMode)}`);
                 outputChannel.send(load(memory, a, aMode));
                 pc += 2;
                 break;
@@ -89,7 +84,6 @@ export async function runIntCode(code, input, output) {
                 pc += 4;
                 break;
             case OpCode.Stop:
-                // console.log(`${id} stopping`);
                 outputChannel.close();
                 return;
             default:
